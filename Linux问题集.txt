@@ -1,0 +1,11 @@
+1、解决问题： 中文出现乱码。
+iconv -f gb2312 filename1 -o filename2
+eg: iconv -f gb2312 Linux常用指令.txt -o Linux常用指令1.txt
+
+2、解决问题： 在linux下安装软件
+sudo apt-get install ProName
+
+eg: sudo apt-get install git
+
+
+
