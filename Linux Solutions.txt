@@ -7,5 +7,9 @@ sudo apt-get install ProName
 
 eg: sudo apt-get install git
 
+3.解决问题：无法使用apt-get安装软件，可能有别的进程正在使用
+  解决方法：ps -A |grep apt  //将系统所以正在运行的apt进程找出
+	    通过指令 sudo kill -9 programID 来杀死所有进程
 
+eg: kill -9 902
 
