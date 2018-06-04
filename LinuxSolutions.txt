@@ -13,3 +13,8 @@ eg: sudo apt-get install git
 
 eg: kill -9 902
 
+
+4.解决问题：vim无法保存退出，总是显示 can't open file for writing
+  解决方法：该问题是因为没有权限问题导致的，所以先用命令 sudo su进入管理员模式
+		然后再通过 vim filename 打开文档，这样wq便可以实现。
+
