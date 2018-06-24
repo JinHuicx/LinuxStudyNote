@@ -1,0 +1,75 @@
+ONIE 代码编译以及镜像文件烧写：
+1）ONIE_embedway.tar.bz2
+   基于onie master branch( https://github.com/opencomputeproject/onie )代码增加了EmbedWay x86 platform的支持；
+
+2）编译
+   >1 进入build-config目录
+   >2 执行 “make -j12 MACHINEROOT=../machine/embedway MACHINE=ew_es6220_x48q2h4 all”
+   
+3）ONIE ISO镜像
+   镜像位于build/image目录， onie-recovery-x86_64-ew_es6220_x48q2h4-r0.iso
+   
+4）镜像文件烧写：
+   dd if=onie-recovery-x86_64-ew_es6220_x48q2h4-r0.iso of=/dev/sdX bs=10M，其中sdX依赖于具体的主机
+
+ONIE镜像安装：
+1） 将上面烧写镜像文件的USB插入板上USB接口
+
+2） 板卡上电后选择从镜像USB启动 （目前需要进入BIOS设置界面选择UEFI模式）
+
+3） grub界面选择，ONIE: Embed ONIE选项，ONIE开始自动安装。安装结束后会自动重启板卡，ONIE安装过程结束，
+    可以拔掉镜像USB。
+    
+OPS代码编译：
+1） 基于centec ops branch (https://github.com/Centecnetworks/openswitch-ops-build)代码增加了EmbedWay x86 platform的支持
+
+2） 编译
+    >1 git clone https://github.com/Centecnetworks/openswitch-ops-build
+    >2 make configure es6220-x48q2h4
+    >3 make
+    
+3)  编译成功后OPS installer位于image目录，文件名称onie-installer-x86_64-es6220_x48q2h4
+
+OPS镜像安装：
+1）在安装镜像之前需要先进入到BIOS界面，通过工具烧写DMI相关信息如下：
+   Manufacturer: EmbedWay
+   Product Name: ES6220-X48Q2H4
+   
+2）烧写结束后进入grub ONIE: Install OS 模式，烧写相关硬件信息如下（根据实际情况烧写）：
+   onie-syseeprom -s 0x2c="CH" 
+	 onie-syseeprom -s 0x26=0 
+   onie-syseeprom -s 0x2e="1.0.0.0" 
+   onie-syseeprom -s 0x27="L01" 
+   onie-syseeprom -s 0x25="05/24/2016 00:00:01" 
+   onie-syseeprom -s 0x2b=EmbedWay 
+   onie-syseeprom -s 0x2a=74 
+   onie-syseeprom -s 0x29="2016.05.18.01" 
+   onie-syseeprom -s 0x22=ES6220-X48Q2H4 
+   onie-syseeprom -s 0x28=ES6220-X48Q2H4 
+   onie-syseeprom -s 0x21=ES6220-X48Q2H4 
+   onie-syseeprom -s 0x23=E132GD161011 #根据底板上的SN来填写 
+   onie-syseeprom -s 0x2f=0 
+   onie-syseeprom -s 0x2d=EmbedWay 
+   onie-syseeprom -s 0x24=00:1E:08:0B:D1:DF #根据底板上的mac地址来填写 
+   具体烧写项意义如下（详细定义可以参考ONIE WiKi）：
+
+	 Country Code         0x2C   2 CH
+	 Device Version       0x26   1 0
+	 Diag Version         0x2E   7 1.0.0.0
+	 Label Revision       0x27   3 L01
+	 Manufacture Date     0x25  19 05/24/2016 00:00:01
+	 Manufacturer         0x2B   8 EmbedWay
+	 MAC Addresses        0x2A   2 74
+	 Part Number          0x22  14 ES6220-X48Q2H4
+	 Product Name         0x21  14 ES6220-X48Q2H4
+	 Serial Number        0x23  12 E132GD161011
+	 Service Tag          0x2F   1 0
+	 Vendor Name          0x2D   8 EmbedWay
+	 Base MAC Address     0x24   6 88:88:88:88:87:88
+	 Platform Name        0x28  27 x86_64-ew_es6220_x48q2h4-r0
+	 ONIE Version         0x29  25 master-201609271328-dirty
+
+3）硬件信息烧写结束后，开始OPS镜像安装（ONEI提供多种安装方式，请根据情况具体选择，下面提供的是tftp安装，需要搭建tftp server）：
+   install_url tftp://10.10.38.160/onie-installer-x86_64-es6220_x48q2h4  (10.10.38.160为tftp server IP)
+
+4）OPS镜像安装结束后，板卡自动重启，自动进入OPS系统。
