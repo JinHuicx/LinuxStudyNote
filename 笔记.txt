@@ -1,4 +1,4 @@
-2018.6.23笔记
+=================2018.6.23笔记
 
 1、通过vpn获取公司资源方法
    -登陆EasyConn，输入用户名密码
@@ -7,6 +7,7 @@
 2、在编译github下载下来的onie源码时，出现很多关联工具没有下载，此时要注意编译过程中出现的error,以及提示缺失的相关工具。
 
 3、需要的部分关联软件：
+	#stgit
 	#bison
 	#flex
 	#texinfo
@@ -28,7 +29,8 @@
 	解决方法： sudo apt-get install efivar  ; sudo apt-get install libefivar-dev
 
 	No package 'nss' found
-	解决方法： sudo apt-get install efivar  ; sudo apt-get install libnss3-dev
+	解决方法： sudo apt-get install libnss3  ; sudo apt-get install libnss3-dev
+		   sudo apt-get install libnss3-tools
 
 	No package 'nspr' found
 
@@ -43,6 +45,110 @@
 	-sudo apt-get -f install 
 	-sudo mv /var/lib/dpkg/info/?/var/lib/dpkg/infoold:  sudo rm -rf /var/lib/dpkg/info 
 	-sudo mv /var/lib/dpkg/info_old /var/lib/dpkg/info
+
+
+============2018.6.24笔记
+1、在编译过程中会提示输入你的邮箱以及用户名
+	解决方法： git config --global user.email "you@example.com"
+		   git config --global user.name "your name"
+
+2、问题 autoreconf:未找到命令
+   	解决方法：sudo apt-get install autoconf
+
+3、configure: error: missing required tool: gperf
+	解决方法：sudo apt install gperf
+
+4、configure: error: Required tool not found: GNU awk
+	解决方法：sudo apt-get install gawk 
+
+5、configure: error: could not find curses header, required for the kconfig frontends
+	解决方法：sudo apt-get install libncurses5-dev
+
+6、（重点，昨天卡在这里了）Alternatively, you may set the environment variables OPENSSL_CFLAGS
+and OPENSSL_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+make/mokutil.make:60: recipe for target '/home/jinhui/github/onie/build/user/x86_64-g6.3.0-lnx4.9.95-uClibc-ng-1.0.22/stamp/mokutil-patch' failed
+	解决方法：
+		$sudo apt-get install openssl
+		$sudo apt-get install libssl-dev
+		$sudo apt-get install libsigc++-2.0-dev
+		$sudo apt-get install libsigc++-2.0-dev
+ 	网上解决方法：
+	{
+		1、$sudo ./configure
+		将会开始检查环境、配置，应该会返回信息：
+		　 checking for OPENSSL... configure: error: Package requirements (openssl) were not met:
+		　　Consider adjusting the PKG_CONFIG_PATH environment variable if you
+		　　installed software in a non-standard prefix.
+		　　Alternatively, you may set the environment variables OPENSSL_CFLAGS
+		　　and OPENSSL_LIBS to avoid the need to call pkg-config.
+		　　See the pkg-config man page for more details.
+		2、通过Google搜索结果中，都说的是在这里需要告诉pkg-config这个openssl的相关配置文件(.pc)的位置，通常已安装的软件和包的.pc文件都会出现在/usr/lib/pkg-config下，但我在这里没有找到openssl的.pc文件，并且通过使用命令$sudo apt-get install openssl发现openssl是已安装了的，到这一步就停滞不前了。最后在Ubuntu的package网站里搜索到一个相关的包是libssl- dev，安装这个包：
+		　　$sudo apt-get install libssl-dev
+		　　安装完libssl-dev之后再接着重复上一步$sudo ./configure又会收到和之前类似的信息，只是这回返回的是：
+		　　checking for STUFF... configure: error: Package requirements (sigc++-2.0) were not met:
+		　　No package 'sigc++-2.0' found
+		　　再次通过Ubuntu的Package网站里搜索到相关软件包是libsigc++-2.0，所以需要安装这个包：
+		3、$sudo apt-get install libsigc++-2.0-dev
+
+		如果还是不行的话安装这个包libcurl4-openssl-dev
+
+		4、$sudo apt-get install libsigc++-2.0-dev
+
+		安装完这个包之后再重复执行$sudo /.configure，可以顺利完成了
+	}	
+
+
+7、No package 'uuid' found
+	解决方法： -sudo apt install uuid
+		  -sudo apt install uuid-dev
+		  -sudo apt-get install uuidcdef
+		  -sudo apt-get install uuid-runtime
+
+8、==== Patching mokutil ====
+重新初始化现存的 Git 仓库于 /home/jinhui/github/onie/build/user/x86_64-g6.3.0-lnx4.9.95-uClibc-ng-1.0.22/grub/grub-2.02/.git/
+重新初始化现存的 Git 仓库于 /home/jinhui/github/onie/build/user/x86_64-g6.3.0-lnx4.9.95-uClibc-ng-1.0.22/mokutil/mokutil-0.3.0/.git/
+	解决方法： -stg init: master: branch already initialized
+
+	mokutil: tools for manipulating machine owner keys
+	mokutil-dbgsym: debug symbols for mokutil
+	网上解决方法{
+			1.关闭BIOS里的Secure Boot
+			2.重启ubuntu，安装mokutil
+			代码:
+			sudo apt install mokutil
+
+			安装完成后，要求录入8位以上的密码。
+			3.
+			代码:
+			sudo mokutil --disable-validation
+
+			录入2步骤设置的密码。
+			4.
+			代码:
+			sudo mokutil --sb-state
+
+			代码:
+			SecureBoot disabled
+
+			5.virtualbox升级到5.0.20
+			6.ubuntu内核升级到4.4.0-21-generic
+			代码:
+			sudo update
+
+			代码:
+			sudo upgrade
+
+			7.
+			代码:
+			sudo /sbin/rcvboxdrv setup
+
+			到bios里将Secure Boot再打开，打完收工。
+		   }
+			
+
+
+
 
 
 
