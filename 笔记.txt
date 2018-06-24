@@ -48,6 +48,7 @@
 
 
 ============2018.6.24笔记
+编译指令 ：  $ make -j4 MACHINE=kvm_x86_64 all recovery-iso
 1、在编译过程中会提示输入你的邮箱以及用户名
 	解决方法： git config --global user.email "you@example.com"
 		   git config --global user.name "your name"
@@ -108,7 +109,7 @@ make/mokutil.make:60: recipe for target '/home/jinhui/github/onie/build/user/x86
 8、==== Patching mokutil ====
 重新初始化现存的 Git 仓库于 /home/jinhui/github/onie/build/user/x86_64-g6.3.0-lnx4.9.95-uClibc-ng-1.0.22/grub/grub-2.02/.git/
 重新初始化现存的 Git 仓库于 /home/jinhui/github/onie/build/user/x86_64-g6.3.0-lnx4.9.95-uClibc-ng-1.0.22/mokutil/mokutil-0.3.0/.git/
-	解决方法： -stg init: master: branch already initialized
+	 -stg init: master: branch already initialized
 
 	mokutil: tools for manipulating machine owner keys
 	mokutil-dbgsym: debug symbols for mokutil
@@ -145,6 +146,17 @@ make/mokutil.make:60: recipe for target '/home/jinhui/github/onie/build/user/x86
 
 			到bios里将Secure Boot再打开，打完收工。
 		   }
+
+:(卡在secure boot 这里了，网上说 {
+					1：ubuntu没有secure boot 认证。死了这条心吧。
+					2：关了secure boot 。安装ubuntu。
+					3：如果要进win8,就打开secure boot。哎，很蛋疼，是吧。
+					4：关了secure boot，重新安装win8 ，自己想办法激活（这个目前很简单了吧）。同时安装ubuntu，一切就正常了。
+				}
+明天再尝试解决一下吧。
+
+
+
 			
 
 
