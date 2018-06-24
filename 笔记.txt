@@ -1,0 +1,48 @@
+2018.6.23笔记
+
+1、通过vpn获取公司资源方法
+   -登陆EasyConn，输入用户名密码
+   -在本地文件夹地址路径输入ftp://10.0.1.10 进入ftp服务器
+
+2、在编译github下载下来的onie源码时，出现很多关联工具没有下载，此时要注意编译过程中出现的error,以及提示缺失的相关工具。
+
+3、需要的部分关联软件：
+	#bison
+	#flex
+	#texinfo
+	#help2man
+
+4、中途出现gcc-6.3.0.tar.bz2校验失败，处理方法在build/download中删除该压缩包，然后冲重新	make,让其在外网中重新下载该压缩包。
+
+5、安装过程中提示： fatal error : popt.h :没有哪个文件或目录  
+	解决方法：安装对应的包  sudo apt-get install libpopt-dev
+    	-fatal error: prerror.h : 没有那个文件或目录
+    	-fatal error: cert.h :没有哪个文件或目录
+
+6、可以在下列网站下查看完整包名：
+	https://packages.ubuntu.com/search?suite=default&section=all&arch=any&keywords=nss&searchon=names
+
+
+7、缺失相应的包 
+	No package 'efivar' found
+	解决方法： sudo apt-get install efivar  ; sudo apt-get install libefivar-dev
+
+	No package 'nss' found
+	解决方法： sudo apt-get install efivar  ; sudo apt-get install libnss3-dev
+
+	No package 'nspr' found
+
+	No package 'efivar' found
+
+8、问题：dpkg:处理软件包 dnsproxy 时出错
+	解决方法：
+
+	-备份dpkg下的info,然后自己创建一个新的info，然后更新，再把新的info里的内容拷贝到旧的里面，旧的再改成info,删除自己添加的
+	-复制代码 
+	-sudo mv /var/lib/dpkg/info/var/lib/dpkg/infoold:  sudo mkdir /var/lib/dpkg/info 
+	-sudo apt-get -f install 
+	-sudo mv /var/lib/dpkg/info/?/var/lib/dpkg/infoold:  sudo rm -rf /var/lib/dpkg/info 
+	-sudo mv /var/lib/dpkg/info_old /var/lib/dpkg/info
+
+
+
