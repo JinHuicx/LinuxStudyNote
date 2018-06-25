@@ -156,6 +156,80 @@ make/mokutil.make:60: recipe for target '/home/jinhui/github/onie/build/user/x86
 明天再尝试解决一下吧。
 
 
+=================6月25日笔记
+1、onie编译资源网站
+www.onie.org
+www.opencompute.org/wiki/Networking/ONIE#Documentation
+opencomputeproject.github.io/onie/developers/index.html
+docs.docker.com
+
+
+2、腾老大说在ubuntu-16.04上编译onie遇到的坑会比较多，所以我决定装个ubuntu-14.04的版本再尝试一下
+
+3、熟悉docker编译。以后尽量向该方向发展。
+
+4、docker的安装 ：
+	-安装Docker社区版仓库
+      step1:
+	sudo apt-get -y install \
+  	apt-transport-https \
+  	ca-certificates \
+  	curl
+
+      step2:
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+      step3:
+	sudo add-apt-repository \
+       	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+       	$(lsb_release -cs) \
+       	stable"
+
+      step4:
+	sudo apt-get update
+
+
+    	-获取Docker社区版
+
+	在Ubuntu上安装最新的Docker社区版
+
+	sudo apt-get -y install docker-ce
+
+
+    	测试你的Docker社区版是否安装成功
+	sudo docker run hello-world
+
+	一般来说在国内运行上述测试都是失败的，主要原因是在国内访问docker的网络不稳定。所以需要用到加速器
+
+5、获取阿里云加速器：
+	访问https://cr.console.aliyun.com/#/accelerator
+	可以获得自己的加速器 https://××××××.mirror.aliyuncs.com
+
+	我所获得的加速器地址为： https://pqvdqwpu.mirror.aliyuncs.com
+
+	安装／升级你的Docker客户端
+
+   	推荐安装1.10.0以上版本的Docker客户端，参考文档 docker-ce
+
+	#如何配置镜像加速器
+
+    	针对Docker客户端版本大于1.10.0的用户
+
+   	您可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器：
+
+	1、sudo mkdir -p /etc/docker
+	2、sudo tee /etc/docker/daemon.json <<-'EOF'
+	    {
+	      "registry-mirrors": ["https://pqvdqwpu.mirror.aliyuncs.com"]
+	    }
+	    EOF
+	3、sudo systemctl daemon-reload
+	4、sudo systemctl restart docker
+
+
+
+
+
 
 			
 
