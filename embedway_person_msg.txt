@@ -1,0 +1,53 @@
+﻿金晖相关帐号已经开通：
+
+域用户：jin.hui@server.embedway.com   IP地址：10.0.1.1
+密码：123456@E
+
+Notes用户: 金晖 hjin/SoftWare/NEC/embedway   IP地址：10.0.1.7 
+密码：123456@E
+sametime用户：hjin   IP地址：10.0.1.4
+密码：123456@E
+
+SVN用户：jin.hui  IP地址：10.0.1.16
+密码：123456@E
+
+oa用户：jin.hui     IP地址：10.0.1.30
+密码：123456@E
+
+
+外部邮箱：jin.hui@embedway.com
+密码：Embed@220
+web页面登录地址：mail.embedway.com
+
+请及时修改密码！！！
+
+文档加密密码。
+embe35bc66
+
+
+192.168.32.5
+ssh 10.0.1.20 jin.hui/123456@E
+192.168.32.5  /  192.168.35.5  
+
+github上的个人笔记
+https://github.com/JinHuicx/LinuxStudyNote.git
+
+
+Barefoot项目SVN路径：
+http://10.0.1.16/svn/exprobe8100_plus
+http://10.0.1.16/svn/exprobeiii
+http://10.0.1.16/svn/optiplus
+http://10.0.1.16/svn/software/NEC_software/barefoot-sde
+barefoot sde 路径：
+ftp://10.0.1.10/pub/barefoot/sde/
+onie
+http://10.0.1.16/svn/software/NEC_software/onie
+周报
+http://10.0.1.16/svn/software_weekly
+
+
+资源网站
+http://www.onie.org/
+https://www.opencompute.org/wiki/Networking/ONIE#Documentation
+https://opencomputeproject.github.io/onie/developers/index.html
+https://docs.docker.com/
