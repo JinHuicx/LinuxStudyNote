@@ -155,14 +155,38 @@ make/mokutil.make:60: recipe for target '/home/jinhui/github/onie/build/user/x86
 				}
 明天再尝试解决一下吧。
 
+总结：
+	一般的在编译onie时以下这些软件是需要安装的：
+	
+	sudo apt-get -y install stgit
+	sudo apt-get -y install bison
+	sudo apt-get -y install flex
+	sudo apt-get -y install texinfo
+	sudo apt-get -y install help2man
+	sudo apt-get -y install libpopt-dev
+	sudo apt-get -y install efivar
+	sudo apt-get -y install libefivar-dev
+	sudo apt-get -y install libnss3
+	sudo apt-get -y install libnss3-dev
+	sudo apt-get -y install libnss3-tools
+	sudo apt-get -y install autoconf
+	sudo apt-get -y install gperf
+	sudo apt-get -y install gawk 
+	sudo apt-get -y install libncurses5-dev
+	sudo apt-get -y install openssl
+	sudo apt-get -y install libssl-dev
+	sudo apt-get -y install libsigc++-2.0-dev
+	sudo apt-get -y install uuid
+	sudo apt-get -y install uuid-dev
+	sudo apt-get -y install uuidcdef
+	sudo apt-get -y install uuid-runtime
 
 =================6月25日笔记
 1、onie编译资源网站
-www.onie.org
-www.opencompute.org/wiki/Networking/ONIE#Documentation
-opencomputeproject.github.io/onie/developers/index.html
-docs.docker.com
-
+http://www.onie.org
+http://www.opencompute.org/wiki/Networking/ONIE#Documentation
+http://opencomputeproject.github.io/onie/developers/index.html
+http://docs.docker.com
 
 2、腾老大说在ubuntu-16.04上编译onie遇到的坑会比较多，所以我决定装个ubuntu-14.04的版本再尝试一下
 
@@ -171,32 +195,26 @@ docs.docker.com
 4、docker的安装 ：
 	-安装Docker社区版仓库
       step1:
-	sudo apt-get -y install \
-  	apt-transport-https \
-  	ca-certificates \
-  	curl
+			sudo apt-get -y install apt-transport-https ca-certificates curl
 
       step2:
-	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+			curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
       step3:
-	sudo add-apt-repository \
-       	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-       	$(lsb_release -cs) \
-       	stable"
+			sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
       step4:
-	sudo apt-get update
+			sudo apt-get update
 
 
-    	-获取Docker社区版
+    -获取Docker社区版
 
 	在Ubuntu上安装最新的Docker社区版
 
 	sudo apt-get -y install docker-ce
 
 
-    	测试你的Docker社区版是否安装成功
+    -测试你的Docker社区版是否安装成功
 	sudo docker run hello-world
 
 	一般来说在国内运行上述测试都是失败的，主要原因是在国内访问docker的网络不稳定。所以需要用到加速器
@@ -204,7 +222,6 @@ docs.docker.com
 5、获取阿里云加速器：
 	访问https://cr.console.aliyun.com/#/accelerator
 	可以获得自己的加速器 https://××××××.mirror.aliyuncs.com
-
 	我所获得的加速器地址为： https://pqvdqwpu.mirror.aliyuncs.com
 
 	安装／升级你的Docker客户端
@@ -225,13 +242,9 @@ docs.docker.com
 	    EOF
 	3、sudo systemctl daemon-reload
 	4、sudo systemctl restart docker
-
-
-
-
-
-
-			
+	
+	
+	
 
 
 
