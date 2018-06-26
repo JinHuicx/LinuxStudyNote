@@ -27,3 +27,4 @@ sudo apt-get -y install uuid
 sudo apt-get -y install uuid-dev
 sudo apt-get -y install uuidcdef
 sudo apt-get -y install uuid-runtime
+sudo apt-get -y install libtool

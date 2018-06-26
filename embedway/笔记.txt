@@ -242,6 +242,27 @@ http://docs.docker.com
 	    EOF
 	3、sudo systemctl daemon-reload
 	4、sudo systemctl restart docker
+
+
+=======6月26日笔记
+
+1、在（https://github.com/opencomputeproject/onie）源码下存在docker的对onie的编译环境。
+	地址为：./onie/contrib/build-env/
+	具体的使用方法在 /onie/contrib/build-env/README.md
+
+2、了解SONiC(Software for Open Network in the Cloud)(针对云计算开放网络的操作系统)
+
+3、在ubuntu下如果下载软件慢的话，可以通过替换 ubuntu 源来实现。
+	参考如下地址：https://blog.csdn.net/qq_33472557/article/details/77389192
+
+4、在onie官网上找到的docker的onie编译环境是基于debain的，但是在国内无法连接到debain的源，而且在ubuntu下也无法使用阿里云的debain源
+	所以想到了如下方法：
+		1、在ubuntu下通过docker下载一个基本的debain镜像，
+		2、生成debain容器，将该容器的debain源改为国内的阿里云源，之后在该debain容器中编译docker镜像
+		3、创建docker基本的debain容器参考：https://blog.csdn.net/lindev/article/details/50279769
+ 		4、docker中debian系统更换阿里云镜像源参考：https://blog.csdn.net/seymourde/article/details/78123985
+		5、
+
 	
 	
 	
