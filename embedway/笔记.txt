@@ -263,6 +263,28 @@ http://docs.docker.com
  		4、docker中debian系统更换阿里云镜像源参考：https://blog.csdn.net/seymourde/article/details/78123985
 		5、
 
+
+========6月27日笔记
+1、在主机和容器中拷贝文件的指令：
+从主机复制到容器sudo docker cp host_path containerID:container_path
+从容器复制到主机sudo docker cp containerID:container_path host_path
+容器ID的查询方法想必大家都清楚:docker ps -a（root@8e195035a62e:/# 就是root后面这一串）
+docker ps	显示当前正在运行的容器。
+docker ps -a 	显示所有运行过和正在运行的容器。
+注意：容器要处于运行状态。
+
+2、阿里云docker镜像的下载及使用
+ 有些类似与git的使用方法，sudo docker pull "URL"(仓库地址)
+eg:sudo docker pull registry.cn-hangzhou.aliyuncs.com/lhn/debain  (从阿里云镜像库中获取debain的镜像包)
+
+
+3、花了四天的时间，总算是能够在docker容器中编译onie了 (：D) ，给自己点个赞！哈哈
+	总结：	1、一般的如果要编译什么镜像，可以先寻找是否有官方的docker容器来直接编译，如果有的话就很方便了（很多时间都花在如何搭建编译环境上了T^T）
+		2、在国内，ubuntu的源最好是换成国内的源，比如阿里云的源。
+		3、在国内，docker的下载是需要镜像加速的，可以参考上面如何获取阿里云镜像。（在国能各种墙，真的很蛋疼阿）
+		4、编译完的镜像要记得拷贝出来哦。
+
+
 	
 	
 	
