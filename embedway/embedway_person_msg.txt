@@ -45,6 +45,10 @@ http://10.0.1.16/svn/software/NEC_software/onie
 周报
 http://10.0.1.16/svn/software_weekly
 
+http://10.0.1.16/svn/software/NEC_software/linux
+这个看看提交记录，有个是选通代码:
+http://10.0.1.16/svn/software/NEC_software/linux/linux-4.4.116/trunk/source
+
 
 资源网站
 http://www.onie.org/
