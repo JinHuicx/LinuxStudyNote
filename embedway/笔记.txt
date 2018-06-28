@@ -285,8 +285,51 @@ eg:sudo docker pull registry.cn-hangzhou.aliyuncs.com/lhn/debain  (´Ó°¢ÀïÔÆ¾µÏñ¿
 		4¡¢±àÒëÍêµÄ¾µÏñÒª¼ÇµÃ¿½±´³öÀ´Å¶¡£
 
 
-	
-	
+=======6ÔÂ28ÈÕ±Ê¼Ç
+1¡¢docker ³£ÓÃµÄÒ»Ğ©ÃüÁî
+	-rm        Remove one or more containers 
+              --É¾³ıÈİÆ÷£¬×¢Òâ£¬²»¿ÉÒÔÉ¾³ıÒ»¸öÔËĞĞÖĞµÄÈİÆ÷£¬±ØĞëÏÈÓÃdocker stop»òdocker killÊ¹ÆäÍ£Ö¹¡£
+              µ±È»¿ÉÒÔÇ¿ÖÆÉ¾³ı£¬±ØĞë¼Ó-f²ÎÊı
+              Èç¹ûÒªÒ»´ÎĞÔÉ¾³ıËùÓĞÈİÆ÷£¬¿ÉÊ¹ÓÃ docker rm -f `docker ps -a -q`£¬ÆäÖĞ£¬-qÖ¸µÄÊÇÖ»ÁĞ³öÈİÆ÷µÄID
+    	-rmi       Remove one or more images  --É¾³ı¾µÏñ
+    	-run       Run a command in a new container   
+              --ÈÃ´´½¨µÄÈİÆ÷Á¢¿Ì½øÈëÔËĞĞ×´Ì¬£¬¸ÃÃüÁîµÈÍ¬ÓÚdocker create´´½¨ÈİÆ÷ºóÔÙÊ¹ÓÃdocker startÆô¶¯ÈİÆ÷
+    	-save      Save an image(s) to a tar archive
+              --½«¾µÏñ´ò°ü£¬ÓëÉÏÃæµÄloadÃüÁîÏà¶ÔÓ¦
+              Æ©Èç£º docker save -o nginx.tar nginx
+    	-search    Search the Docker Hub for images  --´ÓDocker HubÖĞËÑË÷¾µÏñ
+    	-start     Start one or more stopped containers --Æô¶¯ÈİÆ÷
+    	-stats     Display a live stream of container(s) resource usage statistics
+              	--¶¯Ì¬ÏÔÊ¾ÈİÆ÷µÄ×ÊÔ´ÏûºÄÇé¿ö£¬°üÀ¨£ºCPU¡¢ÄÚ´æ¡¢ÍøÂçI/O
+    	-stop      Stop a running container 
+              --Í£Ö¹Ò»¸öÔËĞĞµÄÈİÆ÷
+    	-tag       Tag an image into a repository
+              --¶Ô¾µÏñ½øĞĞÖØÃüÃû
+    	-top       Display the running processes of a container
+              --²é¿´ÈİÆ÷ÖĞÕıÔÚÔËĞĞµÄ½ø³Ì
+    	-unpause   Unpause all processes within a container
+              --»Ö¸´ÈİÆ÷ÄÚÔİÍ£µÄ½ø³Ì£¬Óëpause²ÎÊıÏà¶ÔÓ¦
+    	-version   Show the Docker version information 
+              --²é¿´dockerµÄ°æ±¾
+    	-wait      Block until a container stops, then print its exit code
+              --²¶×½ÈİÆ÷Í£Ö¹Ê±µÄÍË³öÂë£¬Ö´ĞĞ´ËÃüÁîºó£¬¸ÃÃüÁî»á¡°hang¡±ÔÚµ±Ç°ÖÕ¶Ë£¬Ö±µ½ÈİÆ÷Í£Ö¹£¬´ËÊ±£¬»á´òÓ¡³öÈİÆ÷µÄÍË³öÂë¡£
+
+2¡¢Í¨¹ıonieµÄ¹Ù·½´úÂëÉú³Édocker¾µÏñ
+	onie¹Ù·½´úÂëdockerµÄ±àÒë»·¾³ÔÚÄ¿Â¼/onie/contrib/build-env ÏÂ
+	cd½øÈë¸ÃÄ¿Â¼£º
+		1¡¢user@host:~/src/onie/contrib/build-env$ docker build -t debian:build-env .
+			--Í¨¹ıdockerfileÉú³Édocker¾µÏñ
+		2¡¢½øÈëdockerÈİÆ÷ºóÖ´ĞĞbuild@f1063a996da6:~$ ./clone-onie   --´Ó¹Ù·½Â·¾¶ÏÂÔØonieÔ´Âë
+			--µ±È»Ò²¿ÉÒÔÍ¨¹ıdocker cp À´°ÑËŞÖ÷»úµÄÔ´Âë¿½±´µ½ÈİÆ÷ÖĞ
+		3¡¢cd½øÈë/onie/build-configÂ·¾¶
+		4¡¢½øĞĞ±àÒë²âÊÔ£º
+			-* For a KVM build: `make -j4 MACHINE=kvm_x86_64 all`
+
+			-For an Accton platform: `make -j4 MACHINEROOT=../machine/accton MACHINE=ac    cton_as7816_64x all`
+
+3¡¢
+
+
 	
 
 
