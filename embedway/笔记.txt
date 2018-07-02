@@ -301,6 +301,7 @@ eg:sudo docker pull registry.cn-hangzhou.aliyuncs.com/lhn/debain  (´Ó°¢ÀïÔÆ¾µÏñ¿
     	-start     Start one or more stopped containers --Æô¶¯ÈÝÆ÷
     	-stats     Display a live stream of container(s) resource usage statistics
               	--¶¯Ì¬ÏÔÊ¾ÈÝÆ÷µÄ×ÊÔ´ÏûºÄÇé¿ö£¬°üÀ¨£ºCPU¡¢ÄÚ´æ¡¢ÍøÂçI/O
+		-attach  --½øÈëÈÝÆ÷
     	-stop      Stop a running container 
               --Í£Ö¹Ò»¸öÔËÐÐµÄÈÝÆ÷
     	-tag       Tag an image into a repository
@@ -327,7 +328,31 @@ eg:sudo docker pull registry.cn-hangzhou.aliyuncs.com/lhn/debain  (´Ó°¢ÀïÔÆ¾µÏñ¿
 
 			-For an Accton platform: `make -j4 MACHINEROOT=../machine/accton MACHINE=ac    cton_as7816_64x all`
 
-3¡¢
+7ÔÂ2ÈÕ±Ê¼Ç===============================
+
+1¡¢¶ÔÓÚ×îÐÂµÄonie´úÂë£¬embedwayÆ½Ì¨µÄÅäÖÃÐèÒª½øÐÐÒ»Ð©µ÷Õû¡£
+	-busy box ÖÐµÄpatch¿ÉÒÔÉ¾³ý£¬Í¨¹ýconfigÎÄ¼þÀïµÄÅäÖÃÀ´½øÐÐÐÞ¸Ä¡£
+		½«Ô­±¾patchµÄ²¿·Ö£º
+				@@ -33,7 +33,7 @@ static int i2c_write_1b(struct eeprom *e, __u8 buf)
+				r = i2c_smbus_write_byte(e->fd, buf);
+				if(r < 0)
+					fprintf(stderr, "Error i2c_write_1b: %s\n", strerror(errno));
+			-	usleep(10);
+			+	usleep(10000);
+				return r;
+		Ìæ»»ÎªconfigÖÐµÄ£º
+			CONFIG_SYS_EEPROM_I2C_WRITE_1B_DELAY=10000
+			CONFIG_SYS_EEPROM_I2C_WRITE_2B_DELAY=10000
+			CONFIG_SYS_EEPROM_I2C_WRITE_3B_DELAY=10000
+			
+2¡¢machine.makeÖÐÒ²Òª×öÒ»¶¨µÄÐÞ¸Ä£¬Ô­±¾²ÉÓÃÄ¬ÈÏ°æ±¾£¬µ«ÊÇµÍ°æ±¾µÄgcc±àÒëÊ±»áÓÐ²»¼æÈÝµÄÎÊÌâ
+ËùÒÔ½«Ô­±¾ÅäÖÃ¸ÄÎªÈçÏÂÅäÖÃ£º
+	# Set the desired kernel version.
+	LINUX_VERSION		= 4.9
+	LINUX_MINOR_VERSION	= 95
+
+	# Use gcc-6.3.0
+	GCC_VERSION = 6.3.0
 
 
 	
