@@ -50,6 +50,12 @@ http://10.0.1.16/svn/software/NEC_software/linux
 http://10.0.1.16/svn/software/NEC_software/linux/linux-4.4.116/trunk/source
 
 
+github资源
+onie:
+https://opencomputeproject.github.io/onie
+SONic:
+https://github.com/Azure/SONiC.git
+
 资源网站
 http://www.onie.org/
 https://www.opencompute.org/wiki/Networking/ONIE#Documentation
