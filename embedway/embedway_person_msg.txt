@@ -49,6 +49,12 @@ http://10.0.1.16/svn/software/NEC_software/linux
 这个看看提交记录，有个是选通代码:
 http://10.0.1.16/svn/software/NEC_software/linux/linux-4.4.116/trunk/source
 
+OA
+http://10.0.1.30   //OA资源地址
+
+CSDN下载账号：
+	账号：liteng890116 
+	密码：Zs_N5eqmuVYb
 
 github资源
 onie:
