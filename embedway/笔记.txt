@@ -425,6 +425,56 @@ eg:sudo docker pull registry.cn-hangzhou.aliyuncs.com/lhn/debain  (´Ó°¢ÀïÔÆ¾µÏñ¿
 			-le		¼ì²â×ó±ßµÄÊýÊÇ·ñÐ¡ÓÚµÈÓÚÓÒ±ßµÄ£¬Èç¹ûÊÇ£¬Ôò·µ»Ø true¡£	[ $a -le $b ] ·µ»Ø true¡£
 				
 				
+	2¡¢³£ÓÃÖ¸Áî¼ÇÂ¼£º
+			-ÔÚÄ³¸öÄ¿Â¼ÏÂÑ°ÕÒ¹Ø¼ü´Ê¡°eth¡± ¿ÉÒÔÍ¨¹ýÈçÏÂÖ¸Áî£º
+				$:grep eth . -r
+			-²é¿´´®¿ÚÃû³ÆµÄÊ¹ÓÃ£º
+				$:ls -l /dev/ttyS*
+				×¢ÊÍ£ºÒ»°ãÇé¿öÏÂ´®¿ÚµÄÃû³ÆÈ«²¿ÔÚdevÏÂÃæ£¬Èç¹ûÄãÃ»ÓÐÍâ²å´®¿Ú¿¨µÄ»°Ä¬ÈÏÊÇdevÏÂµÄttyS*,Ò»°ãttyS0¶ÔÓ¦com1£¬ttyS1¶ÔÓ¦com2£¬µ±È»Ò²²»Ò»¶¨ÊÇ±ØÈ»µÄ£»
+			-²é¿´ÎÄ¼þ¼Ð´óÐ¡
+				du -sh
+			-ÃüÁîÐÐÏÂ»ñÈ¡µØÖ·ÏÂµÄÏÂÔØÄÚÈÝ
+				wget
+			
+			
+		7ÔÂ5ÈÕ±Ê¼Ç===============================
+		
+		1¡¢onie machine µÄÊÊÅäÁ÷³Ì
+		  -Õë¶Ô¿òÍ¼£¬È·¶¨eepromµÄi2cµØÖ·ÒÔ¼°Éè±¸ºÅ
+			Éè±¸ºÅµÄÊ¶±ð·½·¨£º
+					Ò»°ãµÄ£¬i2c³õÊ¼»¯ÓÐÁ½¸öÉè±¸ /dev/i2c-0 Óë /dev/i2c-1 
+						¿ÉÒÔÍ¨¹ý echo "pca9548 0x75" > /sys/devices/soc.0/1180000001200.i2c/i2c-1/new_device Ö¸ÁîÀ´ÊµÏÖ½«µØÖ·Îª0x75µÄpca9548mux¹ÒÔØÔÚdev-1ÉÏ£¬
+						ÕâÑùi2cÉè±¸¾Í¿ÉÒÔÀ©Õ¹³ö¶îÍâµÄ°Ë¸ö¶Ë¿Ú£¬ÔÙ¸ù¾Ý¿òÍ¼ÖÐeepromµÄÁ¬½ÓÎ»ÖÃÀ´ÅÐ¶ÏeepromÎªµÚ¼¸¸öi2c-dev,¿òÍ¼ÖÐeeprom¹ÒÔØÔÚpca9548µÄ×îºóÒ»Î»ÉÏ£¬
+						ËùÒÔÔÚ8110ÉÏeepromµÄÉè±¸ºÅÎª i2c-9
+					Í¨¹ýÖ¸Áî mknod À´ÊµÏÖÉè±¸µÄ×¢²á
+					Í¨¹ýÖ¸Áî echo "0x75" > /sys/devices/soc.0/1180000001200.i2c/i2c-1/delete_device À´ÊµÏÖÉè±¸µÄÉ¾³ý
+					
+		2¡¢¶ÁÈ¡UÅÌÉè±¸ºÅµÄÖ¸Áî
+				²åÈëÇ° £º ls /dev/sd*
+				²åÈëºó £º ls /dev/sd*
+				µ±³öÏÖ¶à³öÀ´Éè±¸ÊÇ£¬¸ÃÉè±¸ºÅ¼´ÎªUÅÌÉè±¸ºÅ
+		
+					
+	
+	7ÔÂ6ÈÕ±Ê¼Ç===========================================
+	1¡¢ÈÎÎñ°²ÅÅ
+		1. IANAµÄÆóÒµ×¢²á·½·¨£¿
+				-Ê×ÏÈ£¬ÔÚÏÂÁÐÁ¬½ÓÖÐÌîÐ´ÉêÇë±í¸ñ¡£
+					http://pen.iana.org/pen/PenApplication.page ¡£
+
+				-È·ÈÏÉÏÃæµÄÐÅÏ¢ÌîÐ´ÕýÈ·ºóÌá½»£¬Ò»¶ÎÊ±¼ä£¨²»»áºÜ¾Ã£¬Ê®¼¸·ÖÖÓ×óÓÒ£©£¬»á¸ø±í¸ñÖÐÖ¸¶¨µÄÓÊÏä·¢ËÍÈ·ÈÏÓÊ¼þ¡£
+					ÈôÒ»Ö±Ã»ÓÐÓÊ¼þ·¢À´£¬Ö¤Ã÷ÐÅÏ¢¿ÉÄÜÌîÐ´´íÎó£¬¿ÉÒÔ³¢ÊÔÖØÐÂÌîÐ´Ìá½»¡£
+					
+				-µ±ÊÕµ½ÓÊ¼þ²¢È·ÈÏºó£¬ÉÏÃæ½«ÏÔÊ¾30ÌìÖ®ÄÚ´¦Àí£¨ÍøÉÏ×÷Õß´ó¸ÅÔÚÒ»ÖÜ×óÓÒÉêÇë³É¹¦£©
+					ÉêÇë³É¹¦ºó£¬IANA»á·¢ËÍÓÊ¼þ£¬¸æÖª¹«Ë¾±»·ÖÅäµÄOID£¬ÒÔ¼°Èç¹ûÒª¸ü»»ÁªÏµÈËÐÅÏ¢ÈçºÎ²Ù×÷µÈ¡£
+					
+		2. onie-syseepromÄÜÐ´ÈëµÄ×Ö¶ÎÁÐÒ»ÏÂ¸øÎÒÃÇ£¬ÓÐÐ©ÀàËÆvendor¡¢board id¡¢macµÄ×Ö¶ÎÓÃ»§Ðè¿¼ÂÇÐ´Ê²Ã´Öµ½øÈ¥
+		
+		
+		3. ÄÜ·ñÖ§³Ö2¸öNOS²¢´æÇÒÔÚÆô¶¯Ê±Ñ¡ÔñÆô¶¯ÄÄ¸öNOS£¿£¨¼´3¸ö·ÖÇø£¬ONIE/NOS1/NOS2£©
+				
+				
+
 				
 				
 				
