@@ -1,0 +1,12 @@
+1、将带有onie镜像的u盘插入exprobeiii中
+2、将串口线插入exprobeiii, 并将网线插入笔记本，或者笔记本连接公司内网wifi
+3、通过ie浏览器登陆 192.168.33.234 , 将串口配置为 38400,用于bios的信息输出。
+4、在命令行输入telnet 192.168.33.234 100xx (其中xx为串口号) ,这样pc就通过串口服务器与exprobeiii相连接了。
+5、重启exprobeiii, 同时不停的按esc键来进入BIOS
+6、将bios的Hard Drive BBS Priorities中的U盘设置为第一个，即从u盘引导系统。
+7、保存退出（Save Changes and Exit）
+8、将串口波特率改为115200以用于onie的调试信息输出。
+9、重启exprobeiii, 让bios自动进入u盘引导， 选择embed onie进入安装界面
+10、安装完毕后，拔掉u盘，重启设备，让其自动进入onie
+11、onie会不停的寻找NOS来进行安装，可以通过onie-discovery-stop来终止寻找
+12、通过i2cdetect -l来查看目前i2c设备树

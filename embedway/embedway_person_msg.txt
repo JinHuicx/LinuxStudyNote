@@ -55,6 +55,7 @@ http://10.0.1.30   //OA资源地址
 CSDN下载账号：
 	账号：liteng890116 
 	密码：Zs_N5eqmuVYb
+	
 
 github资源
 onie:
@@ -67,3 +68,8 @@ http://www.onie.org/
 https://www.opencompute.org/wiki/Networking/ONIE#Documentation
 https://opencomputeproject.github.io/onie/developers/index.html
 https://docs.docker.com/
+
+
+
+串口服务器地址：
+192.168.33.234
